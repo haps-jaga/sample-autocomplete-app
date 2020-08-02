@@ -1,0 +1,46 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: sample_app
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: password
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql:/var/lib/mysql/
+
+  app:
+    build: ./backend
+    container_name: app
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - ./backend:/backend-app
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      DB_USER: appuser
+      DB_PASSWORD: password
+      DB_DATABASE: sample_app
+      DB_HOST: db
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - 4200:80
+    links:
+      - app
+    environment:
+      NGINX_HOST: localhost
+
+volumes:
+  mysql:

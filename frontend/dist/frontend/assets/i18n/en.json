@@ -1,0 +1,20 @@
+{
+  "name": "Name",
+  "email": "Email",
+  "addEmployee": "Add Employee",
+  "searchEmployee": "Search Employee",
+  "enterName": "Enter name",
+  "enterEmail": "Enter email address",
+  "employeeNameHint": "Allowed limit is 5 to 60 characters",
+  "employeeEmailHint": "Example: jaga@example.com",
+  "noResultsFound": "Sorry no results found",
+  "submit": "Submit",
+  "validationMessages": {
+    "maxlength": "Maximum {{value}} length is {{max}} characters",
+    "minlength": "Minimum {{value}} length is {{min}} characters",
+    "email": "Email should be valid. Example: jaga@example.com",
+    "pattern": "Invalid {{value}} format",
+    "required": "{{value}} is required"
+  },
+  "appHeader": "Sample App"
+}

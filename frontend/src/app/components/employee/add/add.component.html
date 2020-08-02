@@ -1,0 +1,32 @@
+<div [formGroup]="formGroup" fxLayout="column" fxLayoutAlign="space-around center">
+  <h4 class="mat-title">{{'addEmployee' | translate}}</h4>
+  <mat-form-field appearance="outline" class="w-80">
+    <mat-label>{{'name' | translate}}</mat-label>
+    <input matInput [placeholder]="'enterName' | translate" formControlName="name" />
+    <mat-hint>{{'employeeNameHint' | translate}}</mat-hint>
+    <mat-error *ngIf="showError('name')">
+      <span>{{ errorMsg("name") }}</span>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-80">
+    <mat-label>{{'email' | translate}}</mat-label>
+    <input matInput [placeholder]="'enterEmail' | translate" formControlName="email" />
+    <mat-hint>{{'employeeEmailHint' | translate}}</mat-hint>
+    <mat-error *ngIf="showError('email')">
+      <span>{{ errorMsg("email") }}</span>
+    </mat-error>
+  </mat-form-field>
+
+  <div>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!formGroup.valid"
+      (click)="addEmployee()"
+    >
+      {{'submit'| translate}}
+    </button>
+  </div>
+</div>

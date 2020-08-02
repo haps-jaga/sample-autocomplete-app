@@ -1,0 +1,30 @@
+<div fxLayout="column" fxLayoutAlign="space-around center">
+  <h4 class="mat-title">{{'searchEmployee' | translate}}</h4>
+  <mat-form-field appearance="outline" class="w-80">
+    <mat-label>Employee</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="Search by Name"
+      [matAutocomplete]="auto"
+      [formControl]="searchText"
+    />
+    <mat-icon matSuffix *ngIf="!isLoading">search</mat-icon>
+    <mat-icon matSuffix *ngIf="isLoading"
+      ><mat-spinner [diameter]="20"></mat-spinner
+    ></mat-icon>
+    <mat-autocomplete #auto="matAutocomplete" (opened)="autocompleteScroll()">
+      <mat-option *ngIf="showNoData" disabled="true" class="text-center"
+        ><span class="mat-small">
+          {{ 'noResultsFound' | translate}}
+        </span></mat-option
+      >
+      <mat-option *ngFor="let option of filterResults" [value]="option.name">
+        <span class="mat-small">
+          <span>{{ option.name }}</span> |
+          <small>Email: {{ option.email }}</small>
+        </span>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
